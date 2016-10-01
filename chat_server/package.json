@@ -1,0 +1,24 @@
+{
+  "name": "chat_server",
+  "version": "1.0.0",
+  "description": "client server chat app with node.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "chat",
+    "application",
+    "tcp",
+    "sockets",
+    "json",
+    "streams",
+    "..."
+  ],
+  "author": "Sean Avery",
+  "license": "ISC",
+  "dependencies": {
+    "duplex-json-stream": "^1.0.1"
+  }
+}
