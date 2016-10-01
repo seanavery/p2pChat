@@ -13,11 +13,12 @@ console.log(user_name);
 // });
 
 // get server name for multicast dns
-var server_name = user_name+'.local'
-var client = jsonStream(net.connect(8001, 'sean.local'));
+var host_name = process.argv[3].toString();
 
-// client = jsonStream(client);
+// connect to host
+var client = jsonStream(net.connect(8001, host_name));
 
+// send input to server
 process.stdin.on('data', (data) => {
   var message = data.toString().trim();
   client.write({
@@ -26,6 +27,7 @@ process.stdin.on('data', (data) => {
   });
 });
 
+// retreive data -> print out message
 client.on('data', (data) => {
   console.log(data.username + '> ' + data.message);
   // process.stdout.write(data);
