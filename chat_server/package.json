@@ -19,6 +19,8 @@
   "author": "Sean Avery",
   "license": "ISC",
   "dependencies": {
-    "duplex-json-stream": "^1.0.1"
+    "duplex-json-stream": "^1.0.1",
+    "lookup-multicast-dns": "^1.0.3",
+    "register-multicast-dns": "^1.1.0"
   }
 }

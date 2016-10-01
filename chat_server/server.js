@@ -1,5 +1,13 @@
 const net = require('net');
-const jsonStream = require('duplex-json-stream')
+const jsonStream = require('duplex-json-stream');
+const register = require('register-multicast-dns');
+
+// get server nickname from args
+var server_nickname = process.argv[2].toString().trim();
+// register nicname
+register(server_nickname + '.local');
+console.log('server registered as ' + server_nickname + '.local');
+
 // list of all clients connected to server
 let clientList = [];
 
