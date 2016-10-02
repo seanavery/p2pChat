@@ -1,0 +1,19 @@
+{
+  "name": "p2p_chat",
+  "version": "1.0.0",
+  "description": "p2p chat with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "p2p",
+    "javascript",
+    "networking"
+  ],
+  "author": "Sean Avery",
+  "license": "ISC",
+  "dependencies": {
+    "fully-connected-topology": "^1.1.1"
+  }
+}
