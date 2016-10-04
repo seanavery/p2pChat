@@ -3,13 +3,26 @@ var net = require('net');
 var topology = require('fully-connected-topology');
 var streamSet = require('stream-set');
 var jsonStream = require('duplex-json-stream');
+var hashToPort = require('hash-to-port');
+var register = require('register-multicast-dns');
+require('lookup-multicast-dns');
 
 // get username from args
 var user_name = process.argv[2].toString().trim();
 
+// register dns
+var my_domain = generate_dns(user_name);
+
+
 // get peers from args
-var me = process.argv[3];
-var peers = process.argv.slice(4);
+var peer_list = process.argv.slice(3);
+// peer_list.map(generate_dns);
+// console.log('peer list is: ' + peer_list);
+
+// helper function to generate unique dns name
+function generate_dns(peer) {
+  return peer + '.local:' + hashToPort(peer);
+}
 
 // set up list of sockets
 var activeSockets = streamSet();
@@ -20,8 +33,10 @@ var id = Math.random()
 
 // add cache of recieved
 var recieved = {}
+
 // setup topology
-var swarm = topology(me, peers);
+var swarm = topology(generate_dns(user_name), peer_list.map(generate_dns));
+register(user_name);
 
 swarm.on('connection', (connection, peer) => {
   connection = jsonStream(connection);
