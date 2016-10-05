@@ -1,5 +1,4 @@
 var levelup = require('levelup');
-
 var db = levelup('./mydb');
 
 db.put('hello', 'world', (err) => {
