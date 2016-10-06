@@ -13,11 +13,8 @@ var user_name = process.argv[2].toString().trim();
 // register dns
 var my_domain = generate_dns(user_name);
 
-
 // get peers from args
 var peer_list = process.argv.slice(3);
-// peer_list.map(generate_dns);
-// console.log('peer list is: ' + peer_list);
 
 // helper function to generate unique dns name
 function generate_dns(peer) {
@@ -38,7 +35,7 @@ var recieved = {}
 var swarm = topology(generate_dns(user_name), peer_list.map(generate_dns));
 register(user_name);
 
-swarm.on('connection', (connection, peer) => {
+  swarm.on('connection', (connection, peer) => {
   connection = jsonStream(connection);
   activeSockets.add(connection);
   console.log('new connection from ', peer);
@@ -47,6 +44,7 @@ swarm.on('connection', (connection, peer) => {
       console.log('already recieieved message: ' + data.sequence);
       return;
     }
+    // log.append(data.message);
     recieved[data.from] = data.sequence;
     console.log(data.username + '> ' + data.message + ' ' + data.sequence + ' ' + data.sent_from);
     seq++;

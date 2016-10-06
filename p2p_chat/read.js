@@ -10,5 +10,5 @@ var changes = log.createReadStream({
 })
 
 changes.on('data', (data) => {
-  console.log(data.peer + ' ' + data.id + ' ' + data.entry);
+  console.log(data.peer + ' ' + data.seq + ' ' + data.entry);
 })
